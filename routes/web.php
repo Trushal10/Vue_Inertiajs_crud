@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\MovieController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -32,6 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/movie/movies/{id}', [MovieController::class, 'update'])->name('movies.update');
     Route::delete('/movie/movies/{id}', [MovieController::class, 'destroy'])->name('movies.destroy');   
 });
+
+//Product Route
+Route::resource('/product',ProductController::class);
 
 
 require __DIR__.'/auth.php';
